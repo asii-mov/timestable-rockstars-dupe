@@ -44,6 +44,23 @@ Use `bun run test`, not `bun test`: the bare command starts Bun's built-in test 
 
 `dist/` uses relative paths, so it can be hosted from any static host or sub-path (e.g. GitHub Pages).
 
+## Deploying to Cloudflare
+
+Live at **https://turbo-tables.sameemalik101.workers.dev**.
+
+```bash
+bun run deploy     # build, bundle into a Worker, and `wrangler deploy`
+```
+
+`scripts/build-worker.ts` embeds the whole `dist/` build (~100 KB) into a single
+Worker script (`dist-worker/worker.js`), so a deploy is one upload with no
+separate asset step. Hashed `/assets/*` files are served with a one-year
+immutable cache; `index.html` and `sw.js` always revalidate so updates reach
+players straight away. Cloudflare compresses responses at the edge.
+
+Wrangler needs `CLOUDFLARE_API_TOKEN` (with Workers edit permission) and
+`CLOUDFLARE_ACCOUNT_ID`, or an interactive `bunx wrangler login`.
+
 ## Structure
 
 ```

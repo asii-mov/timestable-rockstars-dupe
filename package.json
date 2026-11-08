@@ -7,7 +7,9 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "build:worker": "bun run build && bun scripts/build-worker.ts",
+    "deploy": "bun run build:worker && wrangler deploy"
   },
   "repository": {
     "type": "git",
@@ -21,7 +23,8 @@
   "devDependencies": {
     "typescript": "^5.9.3",
     "vite": "^5.4.21",
-    "vitest": "^2.1.9"
+    "vitest": "^2.1.9",
+    "wrangler": "^3"
   },
   "private": true,
   "type": "module",
