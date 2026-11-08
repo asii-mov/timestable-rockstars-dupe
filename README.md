@@ -30,13 +30,17 @@ about 13 KB gzipped.
 
 ## Development
 
+This project uses [Bun](https://bun.sh) as its package manager and script runner.
+
 ```bash
-npm install
-npm run dev        # dev server
-npm test           # unit tests (Vitest)
-npm run build      # typecheck + production build into dist/
-npm run preview    # serve the build
+bun install
+bun run dev        # dev server
+bun run test       # unit tests (Vitest)
+bun run build      # typecheck + production build into dist/
+bun run preview    # serve the build
 ```
+
+Use `bun run test`, not `bun test`: the bare command starts Bun's built-in test runner instead of Vitest.
 
 `dist/` uses relative paths, so it can be hosted from any static host or sub-path (e.g. GitHub Pages).
 
